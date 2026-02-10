@@ -42,7 +42,7 @@ function App() {
   
   const dialogRef = useRef<HTMLDialogElement | null>(null)
   
-  const filteredOrPureJobPosts = useMemo(() => jobsDataFiltrator(jobPostsData),[selectedTags, jobPostsData])
+  const filteredOrPureJobPosts = useMemo(() => jobsDataFiltrator(jobPostsData), [selectedTags, jobPostsData])
   
   useEffect(() => {
     localStorage.setItem('filterTags', JSON.stringify(selectedTags))
