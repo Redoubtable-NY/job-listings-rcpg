@@ -1,0 +1,330 @@
+/* CSS RESET */
+
+*, *::after, *::before{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+input, button, textarea, select{
+  font-family: inherit;
+  font-size: inherit;
+}
+
+body{
+  font-family: "League Spartan", "sans-serif";
+  min-height: 100vh;
+}
+
+/* Style tokens */
+
+:root{
+  /* spacing */
+  --space-4: .25rem;
+  --space-8: .5rem;
+  --space-16: 1rem;
+  --space-24: 1.5rem;
+  --space-48: 3rem;
+  --space-164: 10.25rem;
+
+  /* color */
+  --green-50: rgba(239, 250, 250, 1);
+  --green-400: rgba(92, 165, 165, 1);
+  --green-900: rgba(43, 57, 57, 1);
+  --white: rgba(255, 255, 255, 1);
+  --grey-300: rgba(183, 196, 196, 1);
+  --grey-400: rgba(124, 143, 143, 1);
+}
+
+
+/* Body */
+
+body{
+  padding: 1.5rem 1rem 0 1rem;
+  background-color: var(--green-50);
+}
+
+/* the below can be used to prevent overflow when a dialog is open */
+
+body:has(dialog[open]){
+  overflow: hidden;
+}
+
+/* Header */
+
+.job-listings-header{
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin:  0 var(--space-24) var(--space-24)  var(--space-24);
+}
+
+/* dialog */
+
+
+.caution-dialog{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  min-width: min(380px, 40%);
+  border-radius: .25rem;
+  border: 1px solid var(--green-50);
+}
+
+.caution-dialog::backdrop{
+  background-color: rgba(0, 0,  0, .40);
+}
+
+.caution-dialog__headline{
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.caution-dialog-confirmation-buttons-container{
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.caution-dialog-confirmation-buttons-container > *{
+  min-width: 5rem;
+  padding: .5rem 0;
+  background-color: var(--green-50);
+  color: var(--green-900);
+  border: none;
+  border-radius: .25rem;
+  cursor: pointer;
+}
+
+.caution-dialog-confirmation-buttons-container > *:hover{
+  background-color: var(--green-400);
+  color: var(--white);
+}
+
+#dialog::backdrop{
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.dialog_button-confirm, .dialog_button-deny{
+  min-width: 50%;
+  align-self: center;
+  border: none;
+  border-radius: .25rem;
+  background-color: var(--green-50);
+  color: var(--green-900);
+  padding: .25rem;
+}
+
+/* Filter tray */
+.filter-tray{
+  display: flex;
+  padding: 1rem 1rem;
+  background-color: var(--white);
+  border-radius: 0.3125rem;
+  margin-bottom: 1.5rem;
+  justify-content: space-between;
+}
+
+.filter-tray__tags-container{
+  display: flex;
+  gap: .5rem;
+}
+
+.filter-tray__button-tag{
+  padding: .25rem .5rem .25rem .6875rem;
+  border: none;
+  border-radius: .25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -.15px;
+  background-color: var(--green-50);
+  color: var(--green-400);
+  cursor: pointer;
+}
+
+.filter-tray__button-tag::after{
+  content: url("/images/icon-remove.svg");
+  background-color: var(--green-400);
+  position: relative;
+  padding-top: .4rem;
+  padding-bottom: .25rem;
+  padding-right: .25rem;
+  padding-left: .25rem;
+  z-index: 2;
+  left: .5rem;
+  border-top-right-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+}
+
+.filter-tray__button-tag:hover::after{
+  cursor: pointer;
+  background-color: var(--green-900);
+}
+
+.filter-tray__clear-button{
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: var(--green-400);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Job listings grid */
+
+.job-listings-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(327px, 100%), 1fr));
+  min-width: 260px;
+  row-gap: var(--space-16);
+  column-gap: var(--space-16);
+  margin-bottom: 2rem;
+}
+
+/* job listing card */
+
+.job-listing-card{
+  display: grid;
+  grid-template-areas: 
+    "one"
+    "two"
+    "three"
+    "four"
+  ;
+  row-gap: var(--space-8);
+  background-color: var(--white);
+  padding: var(--space-16) var(--space-24);
+  border-left: .375rem solid var(--white);
+}
+
+.job-listing-card:hover{
+  border-left: .375rem solid var(--green-400);
+  border-radius: .25rem;
+}
+
+.job-listing-card__cmp-new-ftr-container, .job-listing-card__position-details-container ,
+.job-listing-card__button-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.job-listing-card__cmp-new-ftr-container, .job-listing-card__position-details-container{
+  align-items: center;
+}
+
+.job-listing-card__heading{
+  margin-right: var(--space-16);
+  font-size: .875rem;
+  color: var(--green-400);
+}
+
+.job-listing-card__featured-tag, .job-listing-card__new-tag{
+  padding: .5rem .5rem .25rem .5rem;
+  border-radius: 1.25rem;
+  color: var(--white);
+  font-weight: 700;
+  font-size: .875rem;
+}
+
+.job-listing-card__featured-tag{
+  background-color: var(--green-400);
+}
+
+.job-listing-card__new-tag{
+  margin-right: var(--space-8);
+  background-color: var(--green-900);  
+}
+
+.job-listing-card__subheading{
+  font-size: 1rem;
+  color: var(--green-900);
+}
+
+.job-listing-card__position-details-container{
+  border-bottom: 1px solid var(--green-400);
+  padding-bottom: var(--space-16);
+  gap: var(--space-8);
+}
+
+.job-listing-card__button-tags-container{
+  padding-top: var(--space-8);
+  gap: var(--space-8);
+} 
+
+.job-listing-card__button-tag{
+  padding: var(--space-8) var(--space-16);
+  border: none;
+  border-radius: .25rem;
+  background-color: var(--green-50);
+  color: var(--green-400);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.job-listing-card__button-tag:hover{
+  color: var(--white);
+  background-color: var(--green-400);
+}
+
+.job-listing-card__button-tag:active{
+  background-color: var(--green-900);
+}
+
+.job-listing-card__button-tag[aria-pressed="true"]{
+  background-color: var(--green-900);
+  color: var(--green-50);
+}
+
+@media (width >= 703px){
+  body{
+    padding: 1.5rem var(--space-48) 0 var(--space-48);
+  }
+
+  .job-listings-container, .job-listings-header, .filter-tray{
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (width >= 1109px){
+  .job-listings-container, .job-listings-header, .filter-tray{
+    max-width: 1109px;
+  }
+
+  .job-listings-container{
+    grid-template-columns: 1fr;
+  }
+
+  .job-listing-card{
+    grid-template-areas: 
+      "one five"
+      "two five"
+      "three five"
+      "four five"
+      ;
+  }
+
+  .job-listing-card__cmp-new-ftr-container{
+    grid-area: one;
+  }
+
+  .job-listing-card__subheading{
+    grid-area: two; 
+  }
+
+  .job-listing-card__position-details-container{
+    grid-area: three;
+    border: none;
+    padding: 0;
+  }
+
+  .job-listing-card__button-tags-container{
+    grid-area: five;
+    align-self: center;
+    justify-items: end;
+    justify-self: flex-end;
+  }
+}
